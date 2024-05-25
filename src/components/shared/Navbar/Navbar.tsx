@@ -1,10 +1,15 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, { useState } from "react";
 
 export default function Navbar() {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
+
+  const AuthComponent = dynamic(() => import("@/components/UI/AuthComponent"), {
+    ssr: false,
+  });
 
   return (
     <>
@@ -85,27 +90,8 @@ export default function Navbar() {
                   <span>About</span>
                 </Link>
               </li>
-              <li role="none" className="flex items-stretch">
-                <Link
-                  role="menuitem"
-                  aria-haspopup="false"
-                  className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-blue-500 focus:text-blue-600 focus:outline-none focus-visible:outline-none lg:px-8"
-                  href={"/login"}
-                >
-                  <span>Login</span>
-                </Link>
-              </li>
 
-              <li role="none" className="flex items-stretch">
-                <Link
-                  role="menuitem"
-                  aria-haspopup="false"
-                  className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-blue-500 focus:text-blue-600 focus:outline-none focus-visible:outline-none lg:px-8"
-                  href={"/register"}
-                >
-                  <span>Register</span>
-                </Link>
-              </li>
+              <AuthComponent />
             </ul>
           </nav>
         </div>
