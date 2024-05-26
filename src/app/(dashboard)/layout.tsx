@@ -20,7 +20,7 @@ const DashboardLayout = (props: Props) => {
   return (
     <>
       <Sidebar />
-      <div className="ml-[50px]">{children}</div>
+      <div className="ml-[250px] mt-[20px]">{children}</div>
     </>
   );
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { userLogin } from "@/services/actions/userLogin";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
@@ -12,16 +13,16 @@ export default function Login() {
     formState: { errors },
   } = useForm();
 
-  // const [login] = useUserLoginMutation();
+  const router = useRouter();
 
   const onSubmit = async (data: any) => {
     try {
-      // const res = await axios.post("http://localhost:3000/api/login", data);
       const res = await userLogin(data);
       console.log(res);
       if (res.success) {
         toast.success("login successful");
         localStorage.setItem("accessToken", res.data.token);
+        router.push("/dashboard");
       } else {
         toast.error("login unsuccessful");
       }

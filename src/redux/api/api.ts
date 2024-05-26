@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
+import { getAccessToken } from "@/utils/authInfo";
 
 export const baseApi = createApi({
   reducerPath: "api",
@@ -7,7 +8,8 @@ export const baseApi = createApi({
     baseUrl: "http://localhost:3000/api",
     credentials: "include",
     prepareHeaders: (headers, { getState }) => {
-      const token = (getState() as RootState)?.auth?.accessToken;
+      const token = getAccessToken();
+      console.log(token);
       if (token) {
         headers.set("authorization", token);
       }

@@ -2,19 +2,28 @@ import { baseApi } from "../api";
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    userLogin: build.mutation({
-      query: (data) => {
-        console.log(data);
+    allUsers: build.query({
+      query: () => {
         return {
-          url: "/login",
-          method: "POST",
-          data: { body: data },
+          url: "/all-users",
+          method: "GET",
         };
       },
 
-      invalidatesTags: ["user"],
+      providesTags: ["user"],
+    }),
+
+    myProfile: build.query({
+      query: () => {
+        return {
+          url: "/my",
+          method: "GET",
+        };
+      },
+
+      providesTags: ["user"],
     }),
   }),
 });
 
-export const { useUserLoginMutation } = authApi;
+export const { useAllUsersQuery, useMyProfileQuery } = authApi;

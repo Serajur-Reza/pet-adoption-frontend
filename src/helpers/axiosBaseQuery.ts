@@ -1,4 +1,4 @@
-// import { TMeta } from "@/types";
+// // import { TMeta } from "@/types";
 // import type { BaseQueryFn } from "@reduxjs/toolkit/query";
 // import axios from "axios";
 // import type { AxiosRequestConfig, AxiosError } from "axios";
@@ -14,7 +14,7 @@
 //       data?: AxiosRequestConfig["data"];
 //       params?: AxiosRequestConfig["params"];
 //       headers?: AxiosRequestConfig["headers"];
-//       meta?: TMeta;
+//       meta?: any;
 //       contentType?: string;
 //     },
 //     unknown,

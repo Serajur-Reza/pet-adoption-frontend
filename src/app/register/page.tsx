@@ -5,6 +5,7 @@ import { userLogin } from "@/services/actions/userLogin";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function Register() {
   const {
@@ -12,6 +13,8 @@ export default function Register() {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const router = useRouter();
 
   const onSubmit = async (data: any) => {
     try {
@@ -32,6 +35,7 @@ export default function Register() {
         console.log(res1);
         toast.success("registration successful");
         localStorage.setItem("accessToken", res1.data.token);
+        router.push("/dashboard");
       }
     } catch (error) {
       toast.error(error?.message);
