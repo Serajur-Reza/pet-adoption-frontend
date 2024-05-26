@@ -1,6 +1,7 @@
 "use client";
 
 import Sidebar from "@/components/dashboard/Sidebar/Sidebar";
+import { getAccessToken } from "@/utils/authInfo";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -12,10 +13,11 @@ const DashboardLayout = (props: Props) => {
   const { children } = props;
 
   const router = useRouter();
+  const token = getAccessToken();
 
-  //   if (!isLoggedIn()) {
-  //     return router.push("/login");
-  //   }
+  if (!token) {
+    return router.push("/login");
+  }
 
   return (
     <>

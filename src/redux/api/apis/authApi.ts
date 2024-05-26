@@ -23,7 +23,37 @@ const authApi = baseApi.injectEndpoints({
 
       providesTags: ["user"],
     }),
+
+    changePassword: build.mutation({
+      query: (body) => {
+        return {
+          url: "/change-password",
+          method: "POST",
+          data: body,
+        };
+      },
+
+      invalidatesTags: ["user"],
+    }),
+
+    editUser: build.mutation({
+      query: (data) => {
+        console.log(data);
+        return {
+          url: `/${data.id}`,
+          method: "PATCH",
+          data: data.body,
+        };
+      },
+
+      invalidatesTags: ["user"],
+    }),
   }),
 });
 
-export const { useAllUsersQuery, useMyProfileQuery } = authApi;
+export const {
+  useAllUsersQuery,
+  useMyProfileQuery,
+  useChangePasswordMutation,
+  useEditUserMutation,
+} = authApi;

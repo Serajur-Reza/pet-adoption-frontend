@@ -1,11 +1,15 @@
 import { baseUrl } from "@/constants";
+import { getAccessToken } from "@/utils/authInfo";
 import { FieldValues } from "react-hook-form";
 // import setAccessToken from "./setServerActions";
 
-export const userLogin = async (data: FieldValues) => {
-  console.log(data);
-  const res = await fetch(`${baseUrl}/login`, {
-    headers: { "Content-Type": "application/json" },
+export const changePassword = async (data: FieldValues) => {
+  const token = getAccessToken();
+  const res = await fetch(`${baseUrl}/change-password`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
     method: "POST",
     body: JSON.stringify(data),
     credentials: "include",
