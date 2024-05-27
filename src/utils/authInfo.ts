@@ -6,11 +6,13 @@ export const getAccessToken = () => {
 
 export const decodeToken = () => {
   const token = getAccessToken();
-  const data = jwtDecode(token as string);
-  if (data.exp * 1000 < Date.now()) {
-    console.log(data.exp * 1000, Date.now());
-    localStorage.removeItem("accessToken");
-    return;
+  if (token) {
+    const data = jwtDecode(token as string);
+    if (data?.exp * 1000 < Date.now()) {
+      console.log(data?.exp * 1000, Date.now());
+      localStorage.removeItem("accessToken");
+      return;
+    }
+    return data;
   }
-  return data;
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEditUserMutation } from "@/redux/api/apis/authApi";
+import { useEditUserMutation } from "@/redux/api/apis/userApi";
 import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";

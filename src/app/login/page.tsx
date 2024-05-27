@@ -19,7 +19,7 @@ export default function Login() {
     try {
       const res = await userLogin(data);
       console.log(res);
-      if (res.success) {
+      if (res?.data?.id) {
         toast.success("login successful");
         localStorage.setItem("accessToken", res.data.token);
         router.push("/dashboard");

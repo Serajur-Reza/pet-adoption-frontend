@@ -9,5 +9,5 @@ export const baseApi = createApi({
     baseUrl: "http://localhost:3000/api",
   }),
   endpoints: () => ({}),
-  tagTypes: ["user"],
+  tagTypes: ["user", "pets"],
 });

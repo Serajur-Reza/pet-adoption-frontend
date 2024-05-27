@@ -26,7 +26,7 @@ export default function Register() {
       console.log(data);
       const res = await registerUser(data);
       console.log(res);
-      if (res?.success) {
+      if (res?.data?.id) {
         console.log(res);
         const res1 = await userLogin({
           user: data?.username,

@@ -1,12 +1,10 @@
 "use client";
 
-import { useMyProfileQuery } from "@/redux/api/apis/authApi";
 import React, { useState } from "react";
 import UpdateProfileModal from "./components/updateProfileModal";
+import { useMyProfileQuery } from "@/redux/api/apis/userApi";
 
-type Props = {};
-
-const MyProfilePage = (props: Props) => {
+const MyProfilePage = () => {
   const { data, isLoading } = useMyProfileQuery({});
 
   const [isShowing, setIsShowing] = useState(false);

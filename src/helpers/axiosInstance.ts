@@ -37,7 +37,7 @@ instance.interceptors.response.use(
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
 
-    const responseObject: TResponseSuccess = {
+    const responseObject: any = {
       data: response?.data?.data,
       meta: response?.data?.meta,
     };
@@ -53,17 +53,17 @@ instance.interceptors.response.use(
     const config = error?.config;
     console.log(config);
 
-    if (error?.response?.status === 500 && !config?.sent) {
-      config.sent = true;
-      const response = await generateNewAccessToken();
-      const accessToken = response?.data?.accessToken;
-      config.headers["Authorization"] = accessToken;
-      setToLocalStorage(authKey, accessToken);
-      setAccessToken(accessToken);
-      return instance(config);
-    }
+    // if (error?.response?.status === 500 && !config?.sent) {
+    //   config.sent = true;
+    //   const response = await generateNewAccessToken();
+    //   const accessToken = response?.data?.accessToken;
+    //   config.headers["Authorization"] = accessToken;
+    //   setToLocalStorage(authKey, accessToken);
+    //   setAccessToken(accessToken);
+    //   return instance(config);
+    // }
 
-    const responseObject: TResponseError = {
+    const responseObject: any = {
       statusCode: error?.response?.data?.statusCode || 500,
       message: error?.response?.data?.message || "Something Went Wrong",
       errorMessages: error?.response?.data?.message,

@@ -3,7 +3,7 @@
 import {
   useAllUsersQuery,
   useEditUserMutation,
-} from "@/redux/api/apis/authApi";
+} from "@/redux/api/apis/userApi";
 
 const UsersPage = () => {
   const { data, isLoading } = useAllUsersQuery({});

@@ -12,18 +12,29 @@ export const commonRoutes = [
     name: "My Pets",
     icon: <MdOutlinePets />,
   },
-];
 
-export const adminRoutes = [
-  {
-    href: "/dashboard/user-management",
-    name: "User Management",
-    icon: <FaUser />,
-  },
   {
     href: "/dashboard/pet-management",
     name: "Pet Management",
     icon: <MdOutlinePets />,
+  },
+];
+
+export const adminRoutes = [
+  {
+    href: "/dashboard/create-pet",
+    name: "Create Pet",
+    icon: <MdOutlinePets />,
+  },
+  {
+    href: "/dashboard/adoption-management",
+    name: "Adoption Management",
+    icon: <MdOutlinePets />,
+  },
+  {
+    href: "/dashboard/user-management",
+    name: "User Management",
+    icon: <FaUser />,
   },
 ];
 
