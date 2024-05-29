@@ -7,14 +7,20 @@ import React, { useState } from "react";
 import toast from "react-hot-toast";
 import ShowPetInfoModal from "./components/showPetInfoModal";
 import EditPetInfoModal from "./components/editPetInfoModal";
+import { useMyProfileQuery } from "@/redux/api/apis/userApi";
+import CreateAdoption from "./components/createAdoption";
 
 const PetsPage = () => {
   const [isShowing, setIsShowing] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
+  const [createAdoptionModalShowing, setCreateAdoptionModalShowing] =
+    useState(false);
 
   const [petData, setPetData] = useState();
   const [query, setQuery] = useState();
   const [queryValue, setQueryValue] = useState("");
+
+  const { data: userInfo } = useMyProfileQuery({});
 
   const { data, isLoading } = useAllPetsQuery({
     query: query,
@@ -23,7 +29,7 @@ const PetsPage = () => {
 
   const [deletePet] = useDeletePetMutation();
 
-  const userInfo = decodeToken();
+  console.log(userInfo);
 
   const handleDeletePet = async (id: string) => {
     try {
@@ -40,8 +46,6 @@ const PetsPage = () => {
   if (isLoading) {
     <div>Loading...</div>;
   }
-
-  console.log(userInfo);
   return (
     <>
       <div className="relative my-6 md:w-60">
@@ -136,7 +140,7 @@ const PetsPage = () => {
                   <h3 className="text-xl font-medium text-slate-700">
                     {item?.name}
                   </h3>
-                  <p className=" text-slate-400">Breed: {item?.breed}</p>
+                  <p className=" text-slate-400">Breed: {item?.id}</p>
                   <p className=" text-slate-400">Age: {item?.age}</p>
                   <p className=" text-slate-400">Location: {item?.location}</p>
                   <p className=" text-slate-400">
@@ -155,7 +159,19 @@ const PetsPage = () => {
                 >
                   <span className="order-2">View</span>
                 </button>
-                <button className="inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none">
+
+                <button
+                  className="inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
+                  disabled={
+                    userInfo?.adoption?.findIndex(
+                      (elem: any) => elem?.petId === item?.id
+                    ) !== -1
+                  }
+                  onClick={() => {
+                    setPetData(item);
+                    setCreateAdoptionModalShowing(true);
+                  }}
+                >
                   <span className="order-2">Adopt</span>
                 </button>
               </div>
@@ -190,6 +206,11 @@ const PetsPage = () => {
           petData={petData}
           isShowing={isEditModal}
           setIsShowing={setIsEditModal}
+        />
+        <CreateAdoption
+          petData={petData}
+          isShowing={createAdoptionModalShowing}
+          setIsShowing={setCreateAdoptionModalShowing}
         />
       </div>
     </>

@@ -16,7 +16,7 @@ const DashboardLayout = (props: Props) => {
   const token = getAccessToken();
 
   if (!token) {
-    return router.push("/");
+    router.push("/");
   }
 
   return (

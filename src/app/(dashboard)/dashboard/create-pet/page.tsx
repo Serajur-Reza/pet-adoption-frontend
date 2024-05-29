@@ -1,11 +1,25 @@
 "use client";
 
 import { useCreatePetMutation } from "@/redux/api/apis/petApi";
+import { getAccessToken } from "@/utils/authInfo";
+import axios from "axios";
+import { CldUploadWidget } from "next-cloudinary";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+// import { v2 as cloudinary } from "cloudinary";
+// import fs from "fs";
+
+// CldUploadWidget;
 
 type Props = {};
+
+console.log(process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
+// cloudinary.config({
+//   cloud_name: process.env.cloud_name,
+//   api_key: process.env.cloudinary_api_key,
+//   api_secret: process.env.cloudinary_api_secret,
+// });
 
 const CreatePetPage = (props: Props) => {
   const [files, setFiles] = useState();
@@ -23,20 +37,56 @@ const CreatePetPage = (props: Props) => {
   const onSubmit = async (data: any) => {
     console.log(data);
     try {
-      const formData = new FormData();
+      let arr = [];
       for (let i = 0; i < files?.length; i++) {
-        console.log(files[i]);
-        formData.append("files", files[i]);
-      }
+        arr.push(files[i]);
 
-      const body = { ...data, age: Number(data.age) };
-      // formData.append("files", files[0].file);
-      formData.append("data", body);
-      const res = await createPet(formData);
-      console.log(res);
-      if (res.data?.id) {
-        toast.success("created pet successfully");
+        const formData = new FormData();
+        formData.append(`image`, files[i]);
+
+        const res = await axios.post(
+          `https://api.imgbb.com/1/upload?key=a33b5353bedffe0bca09a4ca1b2bf019`,
+          formData
+        );
+        console.log(res);
+
+        // const res = await fetch(
+        //   `https://api.imgbb.com/1/upload?key=a33b5353bedffe0bca09a4ca1b2bf019`,
+        //   {
+        //     method: "POST",
+        //     headers: {
+        //       "content-type": "application/json",
+        //     },
+        //     body: JSON.stringify(formData),
+        //   }
+        // );
+        // console.log(res);
       }
+      // if (files?.length) {
+      //   formData.append("files", files);
+      // }
+
+      // const body = { ...data, age: Number(data.age) };
+      // // formData.append("files", files[0].file);
+      // formData.append("data", body);
+
+      // const res = await axios.post(
+      //   `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
+      //   formData,
+      //   {
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //       Authorization: getAccessToken(),
+      //     },
+      //   }
+      // );
+      // console.log(res);
+
+      // const res = await createPet(formData);
+      // console.log(res);
+      // if (res.data?.id) {
+      //   toast.success("created pet successfully");
+      // }
     } catch (error) {
       toast.error(error?.message || "update profile failed");
     }
@@ -48,12 +98,21 @@ const CreatePetPage = (props: Props) => {
         id="content-4a"
         className="flex-1 overflow-auto"
       >
+        {/* <div className="relative my-6">
+          <CldUploadWidget uploadPreset="qmewgz4b">
+            {({ open }) => {
+              return <button onClick={() => open()}>Upload an Image</button>;
+            }}
+          </CldUploadWidget>
+        </div> */}
+
         <div className="relative my-6">
           <input
             id="id-file01"
             type="file"
             name="id-file01"
             multiple
+            accept="image/*"
             className="peer relative w-full border-b border-slate-200 px-4 py-2.5 pl-12 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400 [&::file-selector-button]:hidden"
             onChange={(e) => {
               //   const arr = [];
