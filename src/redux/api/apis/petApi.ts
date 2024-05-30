@@ -27,26 +27,10 @@ const petApi = baseApi.injectEndpoints({
     createPet: build.mutation({
       query: (body) => {
         console.log(body);
-        // const formData = new FormData();
-        // // Append files to FormData
-        // for (let i = 0; i < body?.files?.length; i++) {
-        //   console.log(body?.files[i]);
-        //   formData.append("files", JSON.stringify(body?.files[i]));
-        // }
-
-        // // formData.append("files", body?.files);
-
-        // // Append JSON data to FormData
-        // formData.append("data", JSON.stringify(body?.data));
-
-        // console.log(formData);
         return {
-          url: `/pets/`,
-          headers: { contentType: "multipart/form-data" },
+          url: `/pets`,
           method: "POST",
           data: body,
-          formData: true,
-          Accept: "*/*",
         };
       },
 

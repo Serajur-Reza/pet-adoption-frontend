@@ -8,11 +8,10 @@ export const commonRoutes = [
     icon: <MdOutlinePets />,
   },
   {
-    href: "/dashboard/my-pets",
-    name: "My Pets",
+    href: "/dashboard/my-adoptions",
+    name: "My Adoptions",
     icon: <MdOutlinePets />,
   },
-
   {
     href: "/dashboard/pet-management",
     name: "Pet Management",

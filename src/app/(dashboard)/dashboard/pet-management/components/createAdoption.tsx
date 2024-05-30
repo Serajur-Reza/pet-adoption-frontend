@@ -1,19 +1,18 @@
 "use client";
 
 import { useCreateAdoptionMutation } from "@/redux/api/apis/adoptionApi";
-import {
-  useEditUserMutation,
-  useMyProfileQuery,
-} from "@/redux/api/apis/userApi";
+import { useMyProfileQuery } from "@/redux/api/apis/userApi";
 import React, { useState, useRef, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export default function CreateAdoption(props: any) {
   const { petData, isShowing, setIsShowing } = props;
   const wrapperRef = useRef(null);
 
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -38,6 +37,7 @@ export default function CreateAdoption(props: any) {
 
       if (res.data?.id) {
         toast.success("adoption created successfully");
+        router.push("/dashboard/adoption-management");
         setIsShowing(false);
       }
     } catch (error) {
@@ -124,7 +124,7 @@ export default function CreateAdoption(props: any) {
             >
               {/*    <!-- Modal --> */}
               <div
-                className="flex max-h-[90vh] w-11/12 max-w-2xl flex-col gap-6 overflow-hidden rounded bg-white p-6 text-slate-500 shadow-xl shadow-slate-700/10"
+                className="flex max-h-[90vh] w-[700px] flex-col gap-6 overflow-hidden rounded bg-white p-6 text-slate-500 shadow-xl shadow-slate-700/10"
                 ref={wrapperRef}
                 id="modal"
                 role="document"
@@ -253,7 +253,7 @@ export default function CreateAdoption(props: any) {
                   {/*<!-- Component: Primary basic checkbox --> */}
                   <>
                     {/*<!-- Component: Primary basic checkbox --> */}
-                    <div className="relative flex flex-wrap items-center">
+                    <div className="relative">
                       <input
                         className="peer h-4 w-4 cursor-pointer appearance-none rounded border-2 border-slate-500 bg-white transition-colors checked:border-emerald-500 checked:bg-emerald-500 checked:hover:border-emerald-600 checked:hover:bg-emerald-600 focus:outline-none checked:focus:border-emerald-700 checked:focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-slate-100 disabled:bg-slate-50"
                         type="checkbox"
@@ -265,11 +265,11 @@ export default function CreateAdoption(props: any) {
                         className="cursor-pointer pl-2 text-slate-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400"
                         htmlFor="id-c01"
                       >
-                        Primary Checkbox
+                        Agree With Our Terms and Conditions
                       </label>
                       <svg
                         className="pointer-events-none absolute left-0 top-1 h-4 w-4 -rotate-90 fill-white stroke-white opacity-0 transition-all duration-300 peer-checked:rotate-0 peer-checked:opacity-100 peer-disabled:cursor-not-allowed"
-                        viewBox="0 0 16 16"
+                        viewBox="0 0 16 20"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                         aria-hidden="true"
@@ -291,12 +291,12 @@ export default function CreateAdoption(props: any) {
                     {/*<!-- End Primary basic checkbox --> */}
                   </>
                   <button
-                    className="inline-flex h-10 flex-1 items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded bg-emerald-50 px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none"
+                    className="h-10 flex-1 content-start items-center justify-center gap-2 justify-self-center whitespace-nowrap rounded bg-emerald-50 px-5 text-sm font-medium tracking-wide text-emerald-500 transition duration-300 hover:bg-emerald-100 hover:text-emerald-600 focus:bg-emerald-200 focus:text-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-100 disabled:text-emerald-400 disabled:shadow-none"
                     onClick={() => {
                       onSubmit();
                     }}
                   >
-                    <span className="order-2">Update</span>
+                    <span className="order-2">Create Adoption</span>
                   </button>
                   {/*<!-- End Primary basic checkbox --> */}
                 </div>

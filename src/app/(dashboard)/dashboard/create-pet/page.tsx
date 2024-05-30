@@ -1,25 +1,13 @@
 "use client";
 
 import { useCreatePetMutation } from "@/redux/api/apis/petApi";
-import { getAccessToken } from "@/utils/authInfo";
+import { ImageUploader } from "@/utils/imageUploader";
 import axios from "axios";
-import { CldUploadWidget } from "next-cloudinary";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-// import { v2 as cloudinary } from "cloudinary";
-// import fs from "fs";
-
-// CldUploadWidget;
 
 type Props = {};
-
-console.log(process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME);
-// cloudinary.config({
-//   cloud_name: process.env.cloud_name,
-//   api_key: process.env.cloudinary_api_key,
-//   api_secret: process.env.cloudinary_api_secret,
-// });
 
 const CreatePetPage = (props: Props) => {
   const [files, setFiles] = useState();
@@ -39,54 +27,21 @@ const CreatePetPage = (props: Props) => {
     try {
       let arr = [];
       for (let i = 0; i < files?.length; i++) {
-        arr.push(files[i]);
-
-        const formData = new FormData();
-        formData.append(`image`, files[i]);
-
-        const res = await axios.post(
-          `https://api.imgbb.com/1/upload?key=a33b5353bedffe0bca09a4ca1b2bf019`,
-          formData
-        );
-        console.log(res);
-
-        // const res = await fetch(
-        //   `https://api.imgbb.com/1/upload?key=a33b5353bedffe0bca09a4ca1b2bf019`,
-        //   {
-        //     method: "POST",
-        //     headers: {
-        //       "content-type": "application/json",
-        //     },
-        //     body: JSON.stringify(formData),
-        //   }
-        // );
-        // console.log(res);
+        const image = await ImageUploader(files[i]);
+        if (image?.status !== 200) {
+          throw new Error("Error uploading image");
+        }
+        console.log(image.data.display_url);
+        arr.push(image.data.display_url);
       }
-      // if (files?.length) {
-      //   formData.append("files", files);
-      // }
 
-      // const body = { ...data, age: Number(data.age) };
-      // // formData.append("files", files[0].file);
-      // formData.append("data", body);
+      const body = { ...data, age: Number(data.age), photos: arr };
 
-      // const res = await axios.post(
-      //   `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`,
-      //   formData,
-      //   {
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //       Authorization: getAccessToken(),
-      //     },
-      //   }
-      // );
-      // console.log(res);
-
-      // const res = await createPet(formData);
-      // console.log(res);
-      // if (res.data?.id) {
-      //   toast.success("created pet successfully");
-      // }
+      const res = await createPet(body);
+      console.log(res);
+      if (res.data?.id) {
+        toast.success("created pet successfully");
+      }
     } catch (error) {
       toast.error(error?.message || "update profile failed");
     }

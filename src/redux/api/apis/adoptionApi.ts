@@ -13,6 +13,17 @@ const adoptionApi = baseApi.injectEndpoints({
       providesTags: ["adoption"],
     }),
 
+    getMyAdoptions: build.query({
+      query: () => {
+        return {
+          url: `/adoption/my-adoptions`,
+          method: "GET",
+        };
+      },
+
+      providesTags: ["adoption"],
+    }),
+
     createAdoption: build.mutation({
       query: (body) => {
         return {
@@ -29,7 +40,7 @@ const adoptionApi = baseApi.injectEndpoints({
       query: ({ id, body }) => {
         return {
           url: `/adoption/${id}`,
-          method: "POST",
+          method: "PUT",
           data: body,
         };
       },
@@ -41,6 +52,7 @@ const adoptionApi = baseApi.injectEndpoints({
 
 export const {
   useGetAllAdoptionsQuery,
+  useGetMyAdoptionsQuery,
   useCreateAdoptionMutation,
   useUpdateAdoptionMutation,
 } = adoptionApi;

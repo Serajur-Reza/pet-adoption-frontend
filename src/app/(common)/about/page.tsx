@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 type Props = {};
@@ -22,6 +23,72 @@ const AboutPage = (props: Props) => {
               public, and advocating for the humane treatment of all animals.
               Together, we can make a difference, one adoption at a time.
             </section>
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center my-5">
+          <h1 className="font-bold text-xl">The Team</h1>
+        </div>
+
+        <div className="grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-4">
+          <div className="overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
+            {/*  <!--  Image --> */}
+            <figure>
+              <Image
+                src="https://i.ibb.co/gZsJFKQ/radioactive.jpg"
+                width={80}
+                height={120}
+                alt="card image"
+                className="aspect-video w-full"
+              />
+            </figure>
+            {/*  <!-- Body--> */}
+            <div className="p-6">
+              <header className="">
+                <h3 className="text-xl font-medium text-slate-700">Mr.X</h3>
+                <p className="text-sm text-slate-400"> Software Engineer</p>
+              </header>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
+            {/*  <!--  Image --> */}
+            <figure>
+              <Image
+                src="https://i.ibb.co/gZsJFKQ/radioactive.jpg"
+                width={80}
+                height={80}
+                alt="card image"
+                className="aspect-video w-full"
+              />
+            </figure>
+            {/*  <!-- Body--> */}
+            <div className="p-6">
+              <header className="">
+                <h3 className="text-xl font-medium text-slate-700">Mr.Y</h3>
+                <p className="text-sm text-slate-400"> Moderator</p>
+              </header>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded bg-white text-slate-500 shadow-md shadow-slate-200">
+            {/*  <!--  Image --> */}
+            <figure>
+              <Image
+                src="https://i.ibb.co/gZsJFKQ/radioactive.jpg"
+                width={80}
+                height={80}
+                alt="card image"
+                className="aspect-video w-full"
+              />
+            </figure>
+            {/*  <!-- Body--> */}
+            <div className="p-6">
+              <header className="">
+                <h3 className="text-xl font-medium text-slate-700">Mr.Z</h3>
+                <p className="text-sm text-slate-400"> Chief Executive</p>
+              </header>
+            </div>
           </div>
         </div>
       </div>

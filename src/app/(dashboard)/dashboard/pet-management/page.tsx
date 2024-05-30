@@ -162,11 +162,7 @@ const PetsPage = () => {
 
                 <button
                   className="inline-flex h-10 flex-1 items-center justify-center gap-2 whitespace-nowrap rounded bg-emerald-500 px-5 text-sm font-medium tracking-wide text-white transition duration-300 hover:bg-emerald-600 focus:bg-emerald-700 focus-visible:outline-none disabled:cursor-not-allowed disabled:border-emerald-300 disabled:bg-emerald-300 disabled:shadow-none"
-                  disabled={
-                    userInfo?.adoption?.findIndex(
-                      (elem: any) => elem?.petId === item?.id
-                    ) !== -1
-                  }
+                  disabled={item?.isAdopted}
                   onClick={() => {
                     setPetData(item);
                     setCreateAdoptionModalShowing(true);
