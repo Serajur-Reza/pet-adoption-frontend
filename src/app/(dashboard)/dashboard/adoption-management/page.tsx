@@ -19,7 +19,6 @@ const AdoptionsPage = (props: Props) => {
   const [updateAdoption] = useUpdateAdoptionMutation();
 
   const editAdoptionStatusHandler = async (data: any) => {
-    console.log(data);
     const res = await updateAdoption({ id: data.id, body: data.body });
   };
 

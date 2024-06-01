@@ -23,7 +23,7 @@ const ChangePasswordPage = () => {
       }
       delete data["confirmPassword"];
       const res = await changePassword(data);
-      console.log(res);
+
       if (res.success) {
         toast.success("login successful");
         localStorage.removeItem("accessToken");

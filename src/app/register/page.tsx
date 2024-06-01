@@ -23,16 +23,15 @@ export default function Register() {
       }
       delete data["confirmPassword"];
       data.isActivated = true;
-      console.log(data);
+
       const res = await registerUser(data);
-      console.log(res);
+
       if (res?.data?.id) {
-        console.log(res);
         const res1 = await userLogin({
           user: data?.username,
           password: data?.password,
         });
-        console.log(res1);
+
         toast.success("registration successful");
         localStorage.setItem("accessToken", res1.data.token);
         router.push("/dashboard");

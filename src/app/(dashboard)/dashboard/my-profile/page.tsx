@@ -9,7 +9,6 @@ const MyProfilePage = () => {
 
   const [isShowing, setIsShowing] = useState(false);
 
-  console.log(data);
   if (isLoading) {
     <div>Loading...</div>;
   }

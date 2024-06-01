@@ -23,26 +23,17 @@ export default function Footer() {
                 </h3>
                 <ul>
                   <li className="mb-2 leading-6">
-                    <a
-                      href="javascript:void(0)"
-                      className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
-                    >
+                    <a className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600">
                       Email : abc@def.com
                     </a>
                   </li>
                   <li className="mb-2 leading-6">
-                    <a
-                      href="javascript:void(0)"
-                      className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
-                    >
+                    <a className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600">
                       Cell : 123
                     </a>
                   </li>
                   <li className="mb-2 leading-6">
-                    <a
-                      href="javascript:void(0)"
-                      className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
-                    >
+                    <a className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600">
                       Social Media Links
                     </a>
                   </li>
@@ -67,10 +58,7 @@ export default function Footer() {
                 </h3>
                 <ul>
                   <li className="mb-2 leading-6">
-                    <a
-                      href="javascript:void(0)"
-                      className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600"
-                    >
+                    <a className="transition-colors duration-300 hover:text-emerald-500 focus:text-emerald-600">
                       Privacy Policy
                     </a>
                   </li>

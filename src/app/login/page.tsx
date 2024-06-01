@@ -18,7 +18,7 @@ export default function Login() {
   const onSubmit = async (data: any) => {
     try {
       const res = await userLogin(data);
-      console.log(res);
+
       if (res?.data?.id) {
         toast.success("login successful");
         localStorage.setItem("accessToken", res.data.token);
@@ -30,7 +30,6 @@ export default function Login() {
       toast.error("login unsuccessful");
     }
   };
-  // console.log(errors);
   return (
     <>
       {/*<!-- Component: Card with form --> */}

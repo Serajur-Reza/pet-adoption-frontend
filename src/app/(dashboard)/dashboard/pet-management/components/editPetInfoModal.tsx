@@ -20,20 +20,14 @@ export default function EditPetInfoModal(props: any) {
     reset,
   } = useForm();
 
-  //   const { data: petData, isLoading } = useSinglePetQuery(petDataId);
-
-  //   console.log(petData);
-
   const [updatePet] = useUpdatePetMutation();
 
   const onSubmit = async (data: any) => {
-    console.log(data);
     try {
       const res = await updatePet({
         id: petData?.id,
         body: { ...data, age: Number(data.age) },
       });
-      console.log(res);
       if (res.data?.id) {
         toast.success("updated pet successfully");
         setIsShowing(false);

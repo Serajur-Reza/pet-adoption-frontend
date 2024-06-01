@@ -8,14 +8,10 @@ import {
 const UsersPage = () => {
   const { data, isLoading } = useAllUsersQuery({});
 
-  console.log(data);
-
   const [editUser] = useEditUserMutation();
 
   const editStatusHandler = async (data: any) => {
-    console.log(data);
     const res = await editUser(data);
-    console.log(res);
   };
 
   return (

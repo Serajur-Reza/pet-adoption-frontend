@@ -17,7 +17,5 @@ export const changePassword = async (data: FieldValues) => {
 
   const userInfo = await res.json();
 
-  console.log(userInfo);
-
   return userInfo;
 };

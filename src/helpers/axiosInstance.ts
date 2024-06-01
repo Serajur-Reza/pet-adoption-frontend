@@ -51,7 +51,6 @@ instance.interceptors.response.use(
     // return error;
 
     const config = error?.config;
-    console.log(config);
 
     // if (error?.response?.status === 500 && !config?.sent) {
     //   config.sent = true;

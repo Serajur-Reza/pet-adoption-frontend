@@ -9,7 +9,6 @@ export const decodeToken = () => {
   if (token) {
     const data = jwtDecode(token as string);
     if (data?.exp * 1000 < Date.now()) {
-      console.log(data?.exp * 1000, Date.now());
       localStorage.removeItem("accessToken");
       return;
     }

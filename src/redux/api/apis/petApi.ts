@@ -3,10 +3,19 @@ import { baseApi } from "../api";
 const petApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     allPets: build.query({
-      query: () => {
+      query: (args) => {
+        const params = new URLSearchParams();
+
+        if (args) {
+          args.forEach((element: { name: string; value: string }) => {
+            params.append(element.name, element.value);
+          });
+        }
+
         return {
           url: "/pets",
           method: "GET",
+          params: params,
         };
       },
 
@@ -26,7 +35,6 @@ const petApi = baseApi.injectEndpoints({
 
     createPet: build.mutation({
       query: (body) => {
-        console.log(body);
         return {
           url: `/pets`,
           method: "POST",

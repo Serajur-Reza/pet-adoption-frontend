@@ -30,10 +30,8 @@ export default function CreateAdoption(props: any) {
       if (!termsChecked) {
         throw new Error("please agree with our terms");
       }
-      console.log(petData?.id);
 
       const res = await createAdoption({ petId: petData?.id });
-      console.log(res);
 
       if (res.data?.id) {
         toast.success("adoption created successfully");

@@ -13,7 +13,6 @@ export default function Sidebar() {
   };
 
   const userData = decodeToken();
-  console.log(userData);
 
   return (
     <>

@@ -18,7 +18,6 @@ export default function UpdateProfileModal(props: any) {
 
   const [updateProfile] = useEditUserMutation();
   const onSubmit = async (data: any) => {
-    console.log(data);
     if (!data.username) {
       delete data["username"];
     }
@@ -28,7 +27,7 @@ export default function UpdateProfileModal(props: any) {
 
     try {
       const res = await updateProfile({ id: userInfo?.id, body: { ...data } });
-      console.log(res);
+
       if (res.data?.id) {
         toast.success("updated profile successfully");
         setIsShowing(false);
