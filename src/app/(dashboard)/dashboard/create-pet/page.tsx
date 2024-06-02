@@ -40,7 +40,7 @@ const CreatePetPage = (props: Props) => {
 
       if (res.data?.id) {
         toast.success("created pet successfully");
-        router.push("/pet-management");
+        router.push("/dashboard/pet-management");
       }
     } catch (error) {
       toast.error(error?.message || "update profile failed");

@@ -35,7 +35,7 @@ export default function CreateAdoption(props: any) {
 
       if (res.data?.id) {
         toast.success("adoption created successfully");
-        router.push("/dashboard/adoption-management");
+        router.push("/dashboard/my-adoptions");
         setIsShowing(false);
       }
     } catch (error) {
