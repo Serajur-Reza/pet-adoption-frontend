@@ -25,11 +25,11 @@ const ChangePasswordPage = () => {
       const res = await changePassword(data);
 
       if (res.success) {
-        toast.success("login successful");
+        toast.success("change password successful");
         localStorage.removeItem("accessToken");
         router.push("/login");
       } else {
-        toast.error("login unsuccessful");
+        toast.error("change password unsuccessful");
       }
     } catch (error) {
       toast.error(error?.message || "login unsuccessful");

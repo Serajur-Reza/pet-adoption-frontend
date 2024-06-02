@@ -7,12 +7,12 @@ import {
 import { useAllPetsQuery } from "@/redux/api/apis/petApi";
 import { decodeToken } from "@/utils/authInfo";
 import dayjs from "dayjs";
-import React from "react";
+import React, { useEffect } from "react";
 
 type Props = {};
 
 const AdoptionsPage = (props: Props) => {
-  const userInfo = decodeToken();
+  let userInfo = decodeToken();
 
   const { data: adoptions, isLoading } = useGetAllAdoptionsQuery({});
 
@@ -40,11 +40,11 @@ const AdoptionsPage = (props: Props) => {
               <th className="py-3 px-6">Name</th>
               <th className="py-3 px-6">Adoption Date</th>
               <th className="py-3 px-6">Status</th>
-              <th className="py-3 px-6"></th>
+              <th className="py-3 px-6">Change Status</th>
             </tr>
           </thead>
           <tbody className="text-gray-600 divide-y">
-            {adoptions?.map((item, idx) => (
+            {adoptions?.map((item: any, idx: number) => (
               <tr key={idx}>
                 <td className="flex items-center gap-x-3 py-3 px-6 whitespace-nowrap">
                   <img
@@ -66,6 +66,7 @@ const AdoptionsPage = (props: Props) => {
                     <div className="relative w-30 max-w-full mx-auto ">
                       <select
                         className="w-full px-3 py-2 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2"
+                        defaultValue={item.status}
                         onChange={(e) =>
                           editAdoptionStatusHandler({
                             id: item.id,

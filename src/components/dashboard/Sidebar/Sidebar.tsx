@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+"use client";
+
+import React from "react";
 import { adminRoutes, commonRoutes, navsFooter } from "./SidebarItems";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,7 +14,9 @@ export default function Sidebar() {
     logoutUser(router);
   };
 
-  const userData = decodeToken();
+  const userInfo = decodeToken();
+
+  console.log(userInfo);
 
   return (
     <>
@@ -37,7 +41,7 @@ export default function Sidebar() {
                 </li>
               ))}
 
-              {userData?.role === "ADMIN" &&
+              {userInfo?.role === "ADMIN" &&
                 adminRoutes.map((item, idx) => (
                   <li key={idx}>
                     <Link
@@ -99,7 +103,7 @@ export default function Sidebar() {
               <div className="flex items-center gap-x-4">
                 <div>
                   <span className="block text-gray-700 text-sm font-semibold">
-                    {userData?.name}
+                    {userInfo?.name}
                   </span>
                   <span className="block mt-px text-gray-600 hover:text-indigo-600 text-xs">
                     View profile

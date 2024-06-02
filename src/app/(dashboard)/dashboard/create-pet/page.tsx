@@ -3,6 +3,7 @@
 import { useCreatePetMutation } from "@/redux/api/apis/petApi";
 import { ImageUploader } from "@/utils/imageUploader";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -17,6 +18,8 @@ const CreatePetPage = (props: Props) => {
     formState: { errors },
     reset,
   } = useForm();
+
+  const router = useRouter();
 
   const [createPet] = useCreatePetMutation();
 
@@ -37,6 +40,7 @@ const CreatePetPage = (props: Props) => {
 
       if (res.data?.id) {
         toast.success("created pet successfully");
+        router.push("/pet-management");
       }
     } catch (error) {
       toast.error(error?.message || "update profile failed");

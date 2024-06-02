@@ -1,7 +1,13 @@
 import { jwtDecode } from "jwt-decode";
 
 export const getAccessToken = () => {
-  return localStorage.getItem("accessToken");
+  // const token = localStorage.getItem("accessToken");
+  // if (token) {
+  //   return localStorage.getItem("accessToken");
+  // }
+  if (typeof window !== "undefined") {
+    return window.localStorage.getItem("accessToken");
+  }
 };
 
 export const decodeToken = () => {

@@ -3,11 +3,6 @@ import { FaUser } from "react-icons/fa";
 
 export const commonRoutes = [
   {
-    href: "/dashboard/pets",
-    name: "Pets",
-    icon: <MdOutlinePets />,
-  },
-  {
     href: "/dashboard/my-adoptions",
     name: "My Adoptions",
     icon: <MdOutlinePets />,
